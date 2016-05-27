@@ -2,6 +2,7 @@
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.IntIntMap;
+import com.badlogic.gdx.utils.IntMap;
 
 public class GameStateJsonParser {
 
@@ -84,6 +85,8 @@ public class GameStateJsonParser {
 	public IntIntMap lostBouwstenen = new IntIntMap();
 	public IntIntMap purchasedBouwstenen = new IntIntMap();
 	
+	public IntMap<Boolean> hacks = new IntMap<Boolean>();
+
 	// attacks: 1st dimension: numTeams; 2nd dimension: numAttacks;
 	public IntIntMap[][] attacks;
 	public static final int ATTACKER_ID_FIELD = 0;

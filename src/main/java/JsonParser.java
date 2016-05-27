@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 public class JsonParser {
 	
-	public static final int NUM_SESSIONS = 6;
+	public static final int NUM_SESSIONS = 1;
 	public static final int NUM_ROUNDS = 8;
 	private static final int NUM_TEAMS = 8;
 	private static final int NUM_ATTACKS_FIELDS = 6;
@@ -25,16 +25,16 @@ public class JsonParser {
 	GameStateJsonParser[][] gameState;
 	
 	String[] inputFolderNames = {
-			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Session1_Fri_May_29_13-59-12_CEST_2015\\",
-			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Session2_Fri_May_29_18-51-53_CEST_2015\\",
-			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Session3_Fri_May_29_21-37-14_CEST_2015\\",
-			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Session4_Sat_May_30_14-13-32_CEST_2015\\",
-			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Session5_Sat_May_30_19-09-36_CEST_2015\\",
-			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Session6_Sat_May_30_21-43-52_CEST_2015\\"
+			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Sessions2016\\Session1_Fri_May_20_14-24-55_CEST_2016\\",
+			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Sessions2016\\Session2_Fri_May_20_18-10-49_CEST_2016\\",
+			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Sessions2016\\Session3_Sat_May_21_13-56-07_CEST_2016\\",
+			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Sessions2016\\Session4_Sat_May_21_19-07-43_CEST_2016\\",
+			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Sessions2016\\Session5_Sun_May_22_14-21-31_CEST_2016\\",
+			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\Sessions2016\\Session6_Sun_May_22_19-22-40_CEST_2016\\"
 	};
 	
 	String outputFileName = 
-			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\all-sessions-2015.xls";
+			"C:\\Users\\Rens\\surfdrive\\rens-developer\\Parsifal app\\all-sessions-2016.xls";
 	
 	// workbook
 	FileOutputStream outFile;
@@ -107,9 +107,11 @@ public class JsonParser {
 						reader.close();
 					}
 					
-					gameState[sessionID][roundID] = jsonInstance.fromJson(GameStateJsonParser.class, data.toString());					
-				} catch(Exception e) {
+					GameStateJsonParser gs = jsonInstance.fromJson(GameStateJsonParser.class, data.toString());
 					
+					gameState[sessionID][roundID] = gs;
+				} catch(Exception e) {
+					System.out.println(e.getMessage());
 				}
 			}
 		}
